@@ -1,5 +1,0 @@
-Test 9: n=4K t=1K blockmapping: Latency = 10.680871 sec and 3.2169 GFLOPS with 2 threads. Matrix dimension 4096 
-Test 10: n=4K t=1K block cylic (r=1): Latency = 12.638258 sec and 2.7187 GFLOPS with 2 threads. Matrix dimension 4096 
-Test 11: n=4K t=1K block cyclic (r=16): Latency = 11.389939 sec and 3.0167 GFLOPS with 2 threads. Matrix dimension 4096 
-Test 11a: n=4K t=1K dynamic (r=16): Latency = 11.587637 sec and 2.9652 GFLOPS with 2 threads. Matrix dimension 4096 
-Summary: Failed 0 out of 4 tests

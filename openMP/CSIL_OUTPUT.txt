@@ -1,0 +1,35 @@
+Dense 2 Threads
+
+Test 9: n=4K t=1K blockmapping: Latency = 10.680871 sec and 3.2169 GFLOPS with 2 threads. Matrix dimension 4096 
+Test 10: n=4K t=1K block cylic (r=1): Latency = 12.638258 sec and 2.7187 GFLOPS with 2 threads. Matrix dimension 4096 
+Test 11: n=4K t=1K block cyclic (r=16): Latency = 11.389939 sec and 3.0167 GFLOPS with 2 threads. Matrix dimension 4096 
+Test 11a: n=4K t=1K dynamic (r=16): Latency = 11.587637 sec and 2.9652 GFLOPS with 2 threads. Matrix dimension 4096 
+Summary: Failed 0 out of 4 tests
+
+
+Dense 4 Threads
+
+Test 9: n=4K t=1K blockmapping: Latency = 5.615381 sec and 6.1189 GFLOPS with 4 threads. Matrix dimension 4096 
+Test 10: n=4K t=1K block cylic (r=1): Latency = 6.884282 sec and 4.9910 GFLOPS with 4 threads. Matrix dimension 4096 
+Test 11: n=4K t=1K block cyclic (r=16): Latency = 5.808514 sec and 5.9154 GFLOPS with 4 threads. Matrix dimension 4096 
+Test 11a: n=4K t=1K dynamic (r=16): Latency = 5.762955 sec and 5.9622 GFLOPS with 4 threads. Matrix dimension 4096 
+Summary: Failed 0 out of 4 tests
+
+
+Upper Triangular 2 Threads
+
+Test 12: n=4K t=1K upper block mapping: Latency = 8.902025 sec and 1.9304 GFLOPS with 2 threads. Matrix dimension 4096 
+Test 13: n=4K t=1K upper block cylic (r=1): Latency = 6.922056 sec and 2.4825 GFLOPS with 2 threads. Matrix dimension 4096 
+Test 14: n=4K t=1K upper block cyclic(r=16): Latency = 6.423528 sec and 2.6752 GFLOPS with 2 threads. Matrix dimension 4096 
+Test 14a: n=4K t=1K upper dynamic(r=16): Latency = 6.652334 sec and 2.5832 GFLOPS with 2 threads. Matrix dimension 4096 
+Summary: Failed 0 out of 4 tests
+
+
+
+Upper Triangular 4 Threads
+
+Test 12: n=4K t=1K upper block mapping: Latency = 5.035183 sec and 3.4128 GFLOPS with 4 threads. Matrix dimension 4096 
+Test 13: n=4K t=1K upper block cylic (r=1): Latency = 3.780632 sec and 4.5453 GFLOPS with 4 threads. Matrix dimension 4096 
+Test 14: n=4K t=1K upper block cyclic(r=16): Latency = 3.056218 sec and 5.6227 GFLOPS with 4 threads. Matrix dimension 4096 
+Test 14a: n=4K t=1K upper dynamic(r=16): Latency = 3.516639 sec and 4.8865 GFLOPS with 4 threads. Matrix dimension 4096 
+Summary: Failed 0 out of 4 tests
