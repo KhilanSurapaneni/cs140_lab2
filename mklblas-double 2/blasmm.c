@@ -92,7 +92,11 @@ int test( int N) {
     for (int j = 0; j < N; j++) {
         const double *B_col; 
         double *C_col; 
-	//Your solution to call cblas_dgemv
+	    cblas_dgemv(CblasColMajor, CblasNoTrans, 
+            M, K, 1.0,
+             A, LDA, 
+             B_col, INCX,
+                0.0, C_col, INCY);
 	
     }
 

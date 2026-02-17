@@ -13,6 +13,13 @@
 #SBATCH -t 00:03:00
 #SBATCH --account=csb175
 
+echo "1 thread"
 export OMP_NUM_THREADS=1
 export MKL_NUM_THREADS=1
 ./blasmm
+
+echo "8 threads"
+export OMP_NUM_THREADS=8
+export MKL_NUM_THREADS=8
+./blasmm
+
