@@ -43,6 +43,12 @@ Part C
 
 1. Report what code changes you made for blasmm.c. 
 
+We fixed the BLAS2 matrix multiply in the DGEMV loop by setting 
+the pointers for the jth column and then calling cblas_dgemv once per column.
+Inside the loop over j, I set B_col = B + j*K and C_col = C_dgemv + j*M for 
+column-major storage, and then called cblas_dgemv(CblasColMajor, CblasNoTrans, 
+M, K, 1.0, A, LDA, B_col, 1, 0.0, C_col, 1). This implements Cj = A · Bj and 
+therefore C = A · B.
 
 
 
@@ -50,3 +56,21 @@ Part C
 Run the code in one thread and 8 threads on an AMD CPU server of Expanse.
 List the latency and GFLOPs of  each method in each setting.  
 Explain why when N varies from small to large,  Method 1 with GEMM starts to outperform others. 
+
+With 1 thread:
+For N=50: DGEMM 0.000064 s, 3.90 GFLOPS; DGEMV loop 0.000061 s, 4.11 GFLOPS; naive 0.000185 s, 1.35 GFLOPS.
+For N=200: DGEMM 0.001347 s, 11.88 GFLOPS; DGEMV loop 0.002110 s, 7.58 GFLOPS; naive 0.007878 s, 2.03 GFLOPS.
+For N=800: DGEMM 0.029333 s, 34.91 GFLOPS; DGEMV loop 0.108081 s, 9.47 GFLOPS; naive 0.572356 s, 1.79 GFLOPS.
+For N=1600: DGEMM 0.215179 s, 38.07 GFLOPS; DGEMV loop 0.762972 s, 10.74 GFLOPS; naive 9.711926 s, 0.84 GFLOPS.
+
+With 8 threads:
+For N=50: DGEMM 0.027473 s, 0.01 GFLOPS; DGEMV loop 0.000058 s, 4.32 GFLOPS; naive 0.013572 s, 0.02 GFLOPS.
+For N=200: DGEMM 0.021395 s, 0.75 GFLOPS; DGEMV loop 0.002819 s, 5.68 GFLOPS; naive 0.013346 s, 1.20 GFLOPS.
+For N=800: DGEMM 0.025561 s, 40.06 GFLOPS; DGEMV loop 0.101767 s, 10.06 GFLOPS; naive 0.079099 s, 12.95 GFLOPS.
+For N=1600: DGEMM 0.053793 s, 152.29 GFLOPS; DGEMV loop 0.751822 s, 10.90 GFLOPS; naive 1.272032 s, 6.44 GFLOPS
+
+Method 1 with GEMM starts to outperform others as N grows because it is level 4 BLAS where MKL blocks the computation to reuse cache 
+and do lots of work per memory load. The DGEMV-loop is Level 2 BLAS and therefore the
+ bandwidth-limited at large N, 
+and the naive triple loop has worse cache behavior than MKL’s tuned
+ GEMM kernel.
