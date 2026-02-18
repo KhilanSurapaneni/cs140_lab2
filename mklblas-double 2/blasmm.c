@@ -90,15 +90,15 @@ int test( int N) {
     // Matrix C is of size M*N, A is of size M*K, B is of size K*N
     // Col C1+ ColC2+ ... ColCN= C= A*B = A * ColB1 + A* ColB2+ ... + A*ColBN
     for (int j = 0; j < N; j++) {
-        const double *B_col; 
-        double *C_col; 
-	    cblas_dgemv(CblasColMajor, CblasNoTrans, 
-            M, K, 1.0,
-             A, LDA, 
+    const double *B_col = B + j * K;      
+    double *C_col = C_dgemv + j * M;    
+
+    cblas_dgemv(CblasColMajor, CblasNoTrans,
+                M, K,
+            1.0, A, LDA,
              B_col, INCX,
-                0.0, C_col, INCY);
-	
-    }
+             0.0, C_col, INCY);
+}
 
     double end_dgemv = get_time();
     double time_dgemv = end_dgemv - start_dgemv;
