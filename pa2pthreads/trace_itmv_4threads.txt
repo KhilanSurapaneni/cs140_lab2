@@ -1,0 +1,24 @@
+hostname: csilvm-14.cs.ucsb.edu
+uptime:  18:40:27 up 13:40, 13 users,  load average: 0.11, 0.05, 0.13
+date: Thu Feb 19 06:40:27 PM PST 2026
+
+command: ./itmv_mult_test_pth 4
+Test 1: Latency = 0.000293 sec with 4 threads. Matrix dimension 16 
+Test 2: Latency = 0.000220 sec with 4 threads. Matrix dimension 17 
+Test 3: Latency = 0.000275 sec with 4 threads. Matrix dimension 16 
+Test 4: Latency = 0.000248 sec with 4 threads. Matrix dimension 17 
+Test 4c: Latency = 0.000246 sec with 4 threads. Matrix dimension 16 
+Test 5: Latency = 0.000240 sec with 4 threads. Matrix dimension 17 
+Test 6: Latency = 0.000179 sec with 4 threads. Matrix dimension 16 
+Test 7: Latency = 0.000257 sec with 4 threads. Matrix dimension 17 
+Test 7c: Latency = 0.000170 sec with 4 threads. Matrix dimension 16 
+Test 8: Latency = 0.000244 sec with 4 threads. Matrix dimension 17 
+Test 8a: n=0.5K t=8K blockmapping: Latency = 0.414509 sec with 4 threads. Matrix dimension 512 
+Test 8b: n=0.5K t=8K blockmapping: Latency = 0.001324 sec with 4 threads. Matrix dimension 512 
+Test 9: n=4K t=1K blockmapping: Latency = 6.838584 sec with 4 threads. Matrix dimension 4096 
+Test 10: n=4K t=1K block cylic (r=1): Latency = 7.145256 sec with 4 threads. Matrix dimension 4096 
+Test 11: n=4K t=1K block cyclic (r=16): Latency = 7.241208 sec with 4 threads. Matrix dimension 4096 
+Test 12: n=4K t=1K upper block mapping: Latency = 0.046025 sec with 4 threads. Matrix dimension 4096 
+Test 13: n=4K t=1K upper block cylic (r=1): Latency = 0.032321 sec with 4 threads. Matrix dimension 4096 
+Test 14: n=4K t=1K upper block cyclic(r=16): Latency = 0.029691 sec with 4 threads. Matrix dimension 4096 
+Summary: Failed 0 out of 18 tests
