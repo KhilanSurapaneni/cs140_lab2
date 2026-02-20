@@ -45,11 +45,10 @@ Part C
 
 We fixed the BLAS2 matrix multiply in the DGEMV loop by setting 
 the pointers for the jth column and then calling cblas_dgemv once per column.
-Inside the loop over j, I set B_col = B + j*K and C_col = C_dgemv + j*M for 
+Inside the loop over j, we set B_col = B + j * K and C_col = C_dgemv + j * M for 
 column-major storage, and then called cblas_dgemv(CblasColMajor, CblasNoTrans, 
 M, K, 1.0, A, LDA, B_col, 1, 0.0, C_col, 1). This implements Cj = A · Bj and 
 therefore C = A · B.
-
 
 
 2. Conduct a latency and GFLOPS comparison of the above 3 when matrix dimension N varies as 50, 200, 800, and 1600. 
@@ -69,8 +68,8 @@ For N=200: DGEMM 0.021395 s, 0.75 GFLOPS; DGEMV loop 0.002819 s, 5.68 GFLOPS; na
 For N=800: DGEMM 0.025561 s, 40.06 GFLOPS; DGEMV loop 0.101767 s, 10.06 GFLOPS; naive 0.079099 s, 12.95 GFLOPS.
 For N=1600: DGEMM 0.053793 s, 152.29 GFLOPS; DGEMV loop 0.751822 s, 10.90 GFLOPS; naive 1.272032 s, 6.44 GFLOPS
 
-Method 1 with GEMM starts to outperform others as N grows because it is level 4 BLAS where MKL blocks the computation to reuse cache 
-and do lots of work per memory load. The DGEMV-loop is Level 2 BLAS and therefore the
- bandwidth-limited at large N, 
-and the naive triple loop has worse cache behavior than MKL’s tuned
- GEMM kernel.
+GEMM starts winning when N gets big because MKL is really good at reusing data. It works on little blocks of the matrices that fit in cache, 
+so it does a ton of multiplication before it has to go back to slow memory. 
+The DGEMV loop is doing one column at a time, so it keeps pulling data from memory over and over,
+and it gets stuck waiting on memory bandwidth with large N.
+The naive triple loop is also not very cache friendly and it is not as optimized as MKL, so it ends up slower too.
